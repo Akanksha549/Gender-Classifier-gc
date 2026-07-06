@@ -63,6 +63,11 @@ with st.sidebar:
 
     st.markdown("---")
 
+
+    st.success("Made with ❤️ by Akanksha Mishra")
+
+     st.markdown("---")
+
 st.markdown("### 🌐 Connect with Me")
 
 col1, col2 = st.columns(2)
@@ -89,7 +94,6 @@ with col2:
         unsafe_allow_html=True,
     )
 
-    st.success("Made with ❤️ by Akanksha Mishra")
 
 # =====================================
 # Theme Colors
