@@ -270,6 +270,26 @@ with st.expander("ℹ️ How does this project work?"):
 6. The prediction and confidence score are displayed.
 """)
 
+
+# =====================================
+# How it Works
+# =====================================
+st.write("")
+st.markdown("---")
+
+with st.expander("ℹ️ How does this project work?"):
+
+    st.markdown("""
+### 🔍 Workflow
+
+1. Upload a face image.
+2. The image is converted to RGB.
+3. It is resized to **64 × 64** pixels.
+4. Pixel values are converted into numerical features.
+5. The Logistic Regression model predicts the gender.
+6. The prediction and confidence score are displayed.
+""")
+
 # =====================================
 # Footer Info
 # =====================================
