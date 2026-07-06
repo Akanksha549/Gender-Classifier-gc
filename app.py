@@ -42,18 +42,15 @@ with st.sidebar:
     st.markdown("### 💡 AI Tips")
 
     st.info("""
-✔ Use a clear face image
-
-✔ Front-facing face
-
-✔ Good lighting
-
-✔ JPG / PNG format
+✔ Use a clear face image  
+✔ Front-facing face  
+✔ Good lighting  
+✔ JPG / PNG format  
 """)
 
     st.markdown("---")
 
-    # ✅ TECH STACK MOVED INSIDE SIDEBAR
+    # ✅ TECH STACK (INSIDE SIDEBAR)
     st.markdown("### 🛠 Tech Stack")
 
     st.write("🐍 Python")
@@ -112,41 +109,36 @@ else:
 st.markdown(f"""
 <style>
 
-/* Entire App */
-.stApp{{
+.stApp {{
     background-color:{bg};
     color:{text};
 }}
 
-/* Sidebar */
-section[data-testid="stSidebar"]{{
+section[data-testid="stSidebar"] {{
     background-color:{card};
     border-right:2px solid #3B82F6;
 }}
 
-/* Sidebar Text */
-section[data-testid="stSidebar"] *{{
+section[data-testid="stSidebar"] * {{
     color:{text} !important;
 }}
 
-/* Main Text */
-h1,h2,h3,h4,h5,h6,p,span,label{{
+h1,h2,h3,h4,h5,h6,p,span,label {{
     color:{text};
 }}
 
-/* File Uploader */
-div[data-testid="stFileUploader"]{{
+div[data-testid="stFileUploader"] {{
     background-color:{"#1E293B" if dark_mode else "#FFFFFF"};
     border:2px dashed #60A5FA;
     border-radius:15px;
     padding:15px;
 }}
 
-div[data-testid="stFileUploader"] *{{
+div[data-testid="stFileUploader"] * {{
     color:{"white" if dark_mode else "black"} !important;
 }}
 
-div[data-testid="stFileUploader"] button{{
+div[data-testid="stFileUploader"] button {{
     background:#2563EB !important;
     color:white !important;
     border-radius:8px;
@@ -173,19 +165,16 @@ text-align:center;
 color:white;
 ">
 
-<h2 style="margin-bottom:5px;">🧠 AI Gender Classification System</h2>
+<h2>🧠 AI Gender Classification System</h2>
 
-<p style="font-size:15px; margin:0;">
-Upload a face image and let AI predict whether the person is
-<b>Male</b> or <b>Female</b>.
+<p>
+Upload a face image and let AI predict Male or Female.
 </p>
 
 </div>
 """, unsafe_allow_html=True)
 
-st.write("")
-
-st.info("📸 Upload a clear, front-facing face image for the best prediction.")
+st.info("📸 Upload a clear, front-facing face image for best results.")
 
 # =====================================
 # Upload Image
@@ -202,31 +191,16 @@ if uploaded_file is not None:
 
     image = Image.open(uploaded_file).convert("RGB")
 
-    col1, col2 = st.columns([1, 1])
+    col1, col2 = st.columns(2)
 
-    # -------------------------
-    # Left Column
-    # -------------------------
     with col1:
+        st.image(image, caption="Uploaded Image", use_container_width=True)
 
-        st.image(
-            image,
-            caption="Uploaded Image",
-            use_container_width=True
-        )
-
-    # -------------------------
-    # Preprocess Image
-    # -------------------------
     img = image.resize((IMG_SIZE, IMG_SIZE))
     img = np.array(img).flatten()
 
-    # -------------------------
-    # Predict
-    # -------------------------
-    with st.spinner("🤖 AI is analyzing the image..."):
+    with st.spinner("🤖 AI is analyzing..."):
         time.sleep(1.5)
-
         prediction = model.predict([img])[0]
         probability = model.predict_proba([img])[0]
 
@@ -239,11 +213,7 @@ if uploaded_file is not None:
         confidence = probability[1] * 100
         color = "#2563EB"
 
-    # -------------------------
-    # Right Column
-    # -------------------------
     with col2:
-
         st.markdown(f"""
         <div style="
         background:{color};
@@ -251,17 +221,11 @@ if uploaded_file is not None:
         border-radius:15px;
         text-align:center;
         color:white;
-        box-shadow:0px 4px 12px rgba(0,0,0,0.25);
         ">
-
-        <h2>🎯 Prediction Result</h2>
-
+        <h2>🎯 Prediction</h2>
         <h1>{result}</h1>
-
         </div>
         """, unsafe_allow_html=True)
-
-        st.write("")
 
         st.markdown(f"""
         <div style="
@@ -269,82 +233,45 @@ if uploaded_file is not None:
         padding:20px;
         border-radius:15px;
         border-left:6px solid #2563EB;
-        box-shadow:0px 3px 8px rgba(0,0,0,0.12);
         ">
-
-        <h3 style="color:{text};">
-        📊 Model Confidence
-        </h3>
-
-        <h1 style="color:#2563EB;">
-        {confidence:.2f}%
-        </h1>
-
+        <h3>📊 Confidence</h3>
+        <h1 style="color:#2563EB;">{confidence:.2f}%</h1>
         </div>
         """, unsafe_allow_html=True)
 
-        st.write("")
-
-        st.toast("Prediction Completed Successfully 🎉", icon="✅")
+        st.toast("Prediction Completed 🎉", icon="✅")
 
         report = f"""
-AI Gender Classification Report
+Prediction Report
 
-Prediction : {result}
-
-Confidence : {confidence:.2f}%
-
-Generated using Logistic Regression
+Result: {result}
+Confidence: {confidence:.2f}%
 """
 
         st.download_button(
-            "📄 Download Prediction Report",
+            "📄 Download Report",
             report,
-            file_name="Prediction_Report.txt",
-            use_container_width=True
+            file_name="report.txt"
         )
 
 # =====================================
-# How it Works
+# Footer Info
 # =====================================
-st.write("")
 st.markdown("---")
 
-with st.expander("ℹ️ How does this project work?"):
-
-    st.markdown("""
-### 🔍 Workflow
-
-1. Upload a face image.
-2. The image is converted to RGB.
-3. It is resized to **64 × 64** pixels.
-4. Pixel values are converted into numerical features.
-5. The Logistic Regression model predicts the gender.
-6. The prediction and confidence score are displayed.
+with st.expander("ℹ️ How it works"):
+    st.write("""
+1. Upload image  
+2. Resize to 64x64  
+3. Convert to pixels  
+4. Model predicts gender  
+5. Output shown with confidence  
 """)
 
-# =====================================
-# Footer
-# =====================================
 st.markdown("---")
 
 st.markdown("""
-<div style="text-align:center;padding:15px;">
-
-<h4>🧠 AI Gender Classification System</h4>
-
-<p>
-Developed with ❤️ using
-<b>Python</b> •
-<b>Streamlit</b> •
-<b>Scikit-Learn</b> •
-<b>NumPy</b> •
-<b>Pillow</b>
-</p>
-
-<p style="color:gray;">
-© 2026 Akanksha Mishra
-</p>
-
+<div style="text-align:center;">
+<h4>Made with ❤️ by Akanksha Mishra</h4>
 </div>
 """, unsafe_allow_html=True)
