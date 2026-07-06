@@ -65,6 +65,28 @@ with st.sidebar:
 
     st.success("Made with ❤️ by Akanksha Mishra")
 
+st.markdown("---")
+
+st.markdown("### 🌐 Connect with Me")
+
+st.markdown("""
+<a href="https://github.com/Akanksha549" target="_blank">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+width="22">
+&nbsp; GitHub
+</a>
+""", unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+st.markdown("""
+<a href="https://www.linkedin.com/in/akanksha-mishra" target="_blank">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+width="22">
+&nbsp; LinkedIn
+</a>
+""", unsafe_allow_html=True)
+
 # =====================================
 # Theme Colors
 # =====================================
@@ -84,25 +106,43 @@ st.markdown(f"""
 <style>
 
 /* Entire App */
-.stApp {{
-    background-color: {bg};
-    color: {text};
+.stApp{{
+    background-color:{bg};
+    color:{text};
 }}
 
 /* Sidebar */
-section[data-testid="stSidebar"] {{
-    background-color: {card};
-    border-right: 2px solid #3B82F6;
+section[data-testid="stSidebar"]{{
+    background-color:{card};
+    border-right:2px solid #3B82F6;
 }}
 
 /* Sidebar Text */
-section[data-testid="stSidebar"] * {{
-    color: {text} !important;
+section[data-testid="stSidebar"] *{{
+    color:{text} !important;
 }}
 
 /* Main Text */
-h1,h2,h3,h4,h5,h6,p,span,label {{
-    color: {text};
+h1,h2,h3,h4,h5,h6,p,span,label{{
+    color:{text};
+}}
+
+/* File Uploader */
+div[data-testid="stFileUploader"]{{
+    background-color:{"#1E293B" if dark_mode else "#FFFFFF"};
+    border:2px dashed #60A5FA;
+    border-radius:15px;
+    padding:15px;
+}}
+
+div[data-testid="stFileUploader"] *{{
+    color:{"white" if dark_mode else "black"} !important;
+}}
+
+div[data-testid="stFileUploader"] button{{
+    background:#2563EB !important;
+    color:white !important;
+    border-radius:8px;
 }}
 
 </style>
