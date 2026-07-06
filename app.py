@@ -180,33 +180,25 @@ if uploaded_file is not None:
 
     col1, col2 = st.columns(2)
 
-    # -------------------------
-    # Show Image
-    # -------------------------
+    # Show uploaded image
     with col1:
         st.image(image, use_container_width=True)
 
-    # -------------------------
-    # Preprocess Image
-    # -------------------------
+    # Preprocess image
     img = image.resize((IMG_SIZE, IMG_SIZE))
     img = np.array(img).flatten()
 
-    # -------------------------
-    # Prediction
-    # -------------------------
+    # Predict
     with st.spinner("🤖 AI is analyzing the image..."):
         time.sleep(1.5)
-
         prediction = model.predict([img])[0]
         probability = model.predict_proba([img])[0]
 
-    # -------------------------
-    # Result Logic
-    # -------------------------
+    # Confidence values
     female_conf = probability[0] * 100
     male_conf = probability[1] * 100
 
+    # Result
     if prediction == 0:
         result = "👩 Female"
         color = "#E1306C"
@@ -214,9 +206,7 @@ if uploaded_file is not None:
         result = "👨 Male"
         color = "#833AB4"
 
-    # -------------------------
-    # Right Side UI
-    # -------------------------
+    # Display Result
     with col2:
 
         st.markdown(f"""
@@ -228,11 +218,8 @@ if uploaded_file is not None:
         color:white;
         box-shadow:0px 4px 12px rgba(0,0,0,0.25);
         ">
-
-        <h2>🎯 Prediction Result</h2>
-
-        <h1>{result}</h1>
-
+            <h2>🎯 Prediction Result</h2>
+            <h1>{result}</h1>
         </div>
         """, unsafe_allow_html=True)
 
@@ -240,33 +227,30 @@ if uploaded_file is not None:
 
         st.markdown(f"""
         <div style="
-background:{card};
-padding:20px;
-border-radius:15px;
-box-shadow:0px 3px 8px rgba(0,0,0,0.12);
-">
+        background:{card};
+        padding:20px;
+        border-radius:15px;
+        border-left:6px solid #E1306C;
+        box-shadow:0px 3px 8px rgba(0,0,0,0.12);
+        ">
+            <h3 style="color:{text}; text-align:center;">
+                📊 Prediction Confidence
+            </h3>
 
-<h3 style="color:{text}; text-align:center;">
-📊 Prediction Confidence
-</h3>
+            <p style="font-size:18px; color:{text};">
+                👩 <b>Female:</b> {female_conf:.2f}%
+            </p>
 
-<p style="font-size:18px; color:{text};">
-👩 <b>Female:</b> {female_conf:.2f}%
-</p>
+            <p style="font-size:18px; color:{text};">
+                👨 <b>Male:</b> {male_conf:.2f}%
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
-<p style="font-size:18px; color:{text};">
-👨 <b>Male:</b> {male_conf:.2f}%
-</p>
-
-</div>
-""", unsafe_allow_html=True)
         st.toast("Prediction Completed 🎉", icon="✅")
 
-# -------------------------
-# Download Report
-# -------------------------     
-        
-report = f"""
+        # Download Report
+        report = f"""
 AI Gender Classification Report
 
 Prediction: {result}
@@ -276,4 +260,9 @@ Female Confidence: {female_conf:.2f}%
 Male Confidence: {male_conf:.2f}%
 """
 
-
+        st.download_button(
+            "📄 Download Prediction Report",
+            report,
+            file_name="Prediction_Report.txt",
+            use_container_width=True
+        )
