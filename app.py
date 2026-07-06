@@ -262,22 +262,18 @@ box-shadow:0px 3px 8px rgba(0,0,0,0.12);
 """, unsafe_allow_html=True)
         st.toast("Prediction Completed 🎉", icon="✅")
 
-        # -------------------------
-        # Download Report
-        # -------------------------
-        report = f"""
+# -------------------------
+# Download Report
+# -------------------------     
+        
+report = f"""
 AI Gender Classification Report
 
 Prediction: {result}
 
-Confidence: {confidence:.2f}%
+Female Confidence: {female_conf:.2f}%
+
+Male Confidence: {male_conf:.2f}%
 """
-
-        st.download_button(
-            "📄 Download Report",
-            report,
-            file_name="Prediction_Report.txt"
-        )
-
 
 
