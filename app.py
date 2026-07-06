@@ -11,73 +11,242 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import joblib
+import matplotlib.pyplot as plt
+import time
 
-# -------------------------
+# =====================================
 # Page Configuration
-# -------------------------
+# =====================================
 st.set_page_config(
     page_title="Male vs Female Classifier",
-    page_icon="👤",
-    layout="centered"
+    page_icon="👨‍💻",
+    layout="wide"
 )
 
-# -------------------------
+# =====================================
+# Custom CSS
+# =====================================
+st.markdown("""
+<style>
+
+.main {
+    background-color: #F7F9FC;
+}
+
+.prediction-box{
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    background-color:#EEF4FF;
+    box-shadow:0px 2px 10px rgba(0,0,0,0.1);
+}
+
+.footer{
+    text-align:center;
+    color:gray;
+    font-size:15px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# =====================================
 # Load Model
-# -------------------------
+# =====================================
 model = joblib.load("male_female_model.pkl")
 
 IMG_SIZE = 64
 
-# -------------------------
-# Title
-# -------------------------
-st.title("👨👩 Male vs Female Image Classifier")
-st.write("Upload a face image to predict whether it is Male or Female.")
+# =====================================
+# Sidebar
+# =====================================
+st.sidebar.title("📋 Project Information")
 
-# -------------------------
-# Upload Image
-# -------------------------
-uploaded_file = st.file_uploader(
-    "Choose an Image",
-    type=["jpg", "jpeg", "png"]
+st.sidebar.success("Model: Logistic Regression")
+
+st.sidebar.write("### Dataset Classes")
+st.sidebar.write("👩 Female")
+st.sidebar.write("👨 Male")
+
+st.sidebar.write("---")
+
+st.sidebar.info(
+"""
+### Image Requirements
+
+✔ JPG / PNG / JPEG
+
+✔ Clear Face Image
+
+✔ Front Facing Image
+
+✔ RGB Image
+"""
 )
 
+# =====================================
+# Header
+# =====================================
+st.markdown("""
+<h1 style="
+text-align:center;
+color:white;
+background:linear-gradient(90deg,#0F172A,#2563EB);
+padding:18px;
+border-radius:12px;">
+👨👩 Male vs Female Face Classification System
+</h1>
+""", unsafe_allow_html=True)
+
+st.markdown(
+"<h4 style='text-align:center;'>Artificial Intelligence Based Gender Prediction using Machine Learning</h4>",
+unsafe_allow_html=True
+)
+
+st.write("")
+
+# =====================================
+# Upload
+# =====================================
+uploaded_file = st.file_uploader(
+    "📤 Upload a Face Image",
+    type=["jpg","jpeg","png"]
+)
+
+# =====================================
+# Prediction
+# =====================================
 if uploaded_file is not None:
 
-    # Read image
-    image = Image.open(uploaded_file)
+    image = Image.open(uploaded_file).convert("RGB")
 
-    # Convert image to RGB
-    image = image.convert("RGB")
+    col1, col2 = st.columns([1,1])
 
-    # Display uploaded image
-    st.image(image, caption="Uploaded Image", width=300)
+    with col1:
 
-    # Resize image
+        st.image(
+            image,
+            caption="Uploaded Image",
+            use_container_width=True
+        )
+
     resized = image.resize((IMG_SIZE, IMG_SIZE))
-
-    # Convert image to NumPy array
     resized = np.array(resized)
-
-    # Flatten image
     resized = resized.flatten()
 
-    # Prediction
-    prediction = model.predict([resized])[0]
+    with st.spinner("🔍 AI is analyzing the image..."):
+        time.sleep(2)
 
-    # Prediction probabilities
-    probability = model.predict_proba([resized])[0]
+        prediction = model.predict([resized])[0]
+        probability = model.predict_proba([resized])[0]
 
-    # Display result
-    if prediction == 0:
-        st.success("👩 Prediction: FEMALE")
-    else:
-        st.success("👨 Prediction: MALE")
+    female = probability[0]*100
+    male = probability[1]*100
 
-    # Display confidence
-    st.subheader("Prediction Confidence")
+    with col2:
 
-    st.write(f"👩 Female Probability: **{probability[0] * 100:.2f}%**")
-    st.write(f"👨 Male Probability: **{probability[1] * 100:.2f}%**")
+        st.subheader("🎯 Prediction Result")
+
+        if prediction == 0:
+
+            st.success("👩 FEMALE")
+
+        else:
+
+            st.success("👨 MALE")
+
+        st.balloons()
+
+        st.write("")
+
+        st.subheader("📊 Prediction Confidence")
+
+        st.write(f"👩 Female : {female:.2f}%")
+        st.progress(float(female)/100)
+
+        st.write(f"👨 Male : {male:.2f}%")
+        st.progress(float(male)/100)
+
+        st.metric(
+            label="Highest Confidence",
+            value=f"{max(female,male):.2f}%"
+        )
+
+    st.write("")
+
+    # ===============================
+    # Graph
+    # ===============================
+    st.subheader("📈 Confidence Graph")
+
+    fig, ax = plt.subplots(figsize=(6,4))
+
+    ax.bar(
+        ["Female","Male"],
+        [female,male]
+    )
+
+    ax.set_ylim(0,100)
+    ax.set_ylabel("Confidence (%)")
+    ax.set_title("Prediction Confidence")
+
+    st.pyplot(fig)
+
+    # ===============================
+    # Download Report
+    # ===============================
+    report = f"""
+Male vs Female Prediction Report
+
+Prediction:
+{"Female" if prediction==0 else "Male"}
+
+Female Confidence : {female:.2f} %
+
+Male Confidence : {male:.2f} %
+"""
+
+    st.download_button(
+        "📥 Download Prediction Report",
+        report,
+        file_name="Prediction_Report.txt"
+    )
+
+# =====================================
+# How it Works
+# =====================================
+with st.expander("ℹ️ How does this project work?"):
+
+    st.write("""
+### Workflow
+
+1. Upload a face image.
+
+2. Image is converted to RGB.
+
+3. Image is resized to **64 × 64** pixels.
+
+4. Pixels are flattened into a feature vector.
+
+5. Logistic Regression predicts the gender.
+
+6. Prediction confidence is displayed.
+
+7. Download the prediction report.
+""")
+
+# =====================================
+# Footer
+# =====================================
+st.markdown("---")
+
+st.markdown(
+"""
+<div class="footer">
+❤️ Developed using Python • Streamlit • Scikit-Learn • NumPy • Pillow
+</div>
+""",
+unsafe_allow_html=True
+)
 
 
