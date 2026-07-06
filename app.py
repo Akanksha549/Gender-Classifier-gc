@@ -50,47 +50,49 @@ with st.sidebar:
 
 ✔ JPG / PNG format
 """)
-st.markdown("---")
 
-st.markdown("### 🛠 Tech Stack")
+    st.markdown("---")
 
-st.write("🐍 Python")
-st.write("🎈 Streamlit")
-st.write("🧠 Scikit-Learn")
-st.write("🖼 Pillow")
-st.write("📊 NumPy")
+    # ✅ TECH STACK MOVED INSIDE SIDEBAR
+    st.markdown("### 🛠 Tech Stack")
 
-st.markdown("---")
+    st.write("🐍 Python")
+    st.write("🎈 Streamlit")
+    st.write("🧠 Scikit-Learn")
+    st.write("🖼 Pillow")
+    st.write("📊 NumPy")
 
-st.success("Made with ❤️ by Akanksha Mishra")
+    st.markdown("---")
 
-st.markdown("---")
+    st.success("Made with ❤️ by Akanksha Mishra")
 
-st.markdown("### 🌐 Connect with Me")
+    st.markdown("---")
 
-col1, col2 = st.columns(2)
+    st.markdown("### 🌐 Connect with Me")
 
-with col1:
-    st.markdown(
-        """
-        <a href="https://github.com/Akanksha549/" target="_blank">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-            width="35">
-        </a>
-        """,
-        unsafe_allow_html=True,
-    )
+    col1, col2 = st.columns(2)
 
-with col2:
-    st.markdown(
-        """
-        <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-            width="35">
-        </a>
-        """,
-        unsafe_allow_html=True,
-    )
+    with col1:
+        st.markdown(
+            """
+            <a href="https://github.com/Akanksha549/" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                width="35">
+            </a>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col2:
+        st.markdown(
+            """
+            <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                width="35">
+            </a>
+            """,
+            unsafe_allow_html=True,
+        )
 
 # =====================================
 # Theme Colors
