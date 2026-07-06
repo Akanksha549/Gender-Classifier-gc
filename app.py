@@ -194,7 +194,7 @@ if uploaded_file is not None:
 
             st.success("👨 MALE")
 
-        st.balloons()
+        st.toast("Prediction Completed Successfully ✅", icon="🎉")
 
         st.write("")
 
