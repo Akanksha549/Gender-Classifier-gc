@@ -26,6 +26,8 @@ st.set_page_config(
 # =====================================
 # Sidebar
 # =====================================
+st.set_option('client.showErrorDetails', False)
+
 with st.sidebar:
 
     st.image(
@@ -61,26 +63,21 @@ with st.sidebar:
     st.markdown("---")
 
     st.success("Made with ❤️ by Akanksha Mishra")
+st.markdown("### 🌐 Connect with Me")
 
-    st.markdown("---")
+st.markdown("""
+<div style="display:flex; gap:18px; align-items:center; margin-top:10px;">
 
-    st.markdown("### 🌐 Connect with Me")
+    <a href="https://github.com/Akanksha549/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="35">
+    </a>
 
-    # ✅ FIX: NO columns inside sidebar
-    st.markdown("""
-    <div style="display:flex; gap:15px; align-items:center;">
+    <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="35">
+    </a>
 
-        <a href="https://github.com/Akanksha549/" target="_blank">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="35">
-        </a>
-
-        <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="35">
-        </a>
-
-    </div>
-    """, unsafe_allow_html=True)
-
+</div>
+""", unsafe_allow_html=True)
 # =====================================
 # Theme Colors
 # =====================================
