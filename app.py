@@ -63,9 +63,6 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.success("Made with ❤️ by Akanksha Mishra")
-
-st.markdown("---")
 st.markdown("### 🌐 Connect with Me")
 
 col1, col2 = st.columns(2)
@@ -91,6 +88,8 @@ with col2:
         """,
         unsafe_allow_html=True,
     )
+
+    st.success("Made with ❤️ by Akanksha Mishra")
 
 # =====================================
 # Theme Colors
@@ -162,18 +161,18 @@ IMG_SIZE = 64
 # =====================================
 # Header
 # =====================================
-st.markdown(f"""
+st.markdown("""
 <div style="
 background: linear-gradient(90deg,#2563EB,#1D4ED8);
-padding:20px;
-border-radius:15px;
+padding:15px;
+border-radius:12px;
 text-align:center;
 color:white;
 ">
 
-<h1>🧠 AI Gender Classification System</h1>
+<h2 style="margin-bottom:5px;">🧠 AI Gender Classification System</h2>
 
-<p style="font-size:18px;">
+<p style="font-size:15px; margin:0;">
 Upload a face image and let AI predict whether the person is
 <b>Male</b> or <b>Female</b>.
 </p>
