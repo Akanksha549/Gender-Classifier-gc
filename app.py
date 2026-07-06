@@ -50,32 +50,40 @@ with st.sidebar:
 
 ✔ JPG / PNG format
 """)
-
-    st.markdown("---")
-
-    st.markdown("### 🛠 Tech Stack")
-
-    st.write("🐍 Python")
-    st.write("🎈 Streamlit")
-    st.write("🧠 Scikit-Learn")
-    st.write("🖼 Pillow")
-    st.write("📊 NumPy")
-
-    st.markdown("---")
-
-    st.success("Made with ❤️ by Akanksha Mishra")
-
 st.markdown("---")
+
+st.markdown("""
+<div style="text-align:center;">
+
+<h4>❤️ Made with Love</h4>
+
+<b>Akanksha Mishra</b>
+
+</div>
+""", unsafe_allow_html=True)
+
+st.write("")   # Small spacing
 
 st.markdown("### 🌐 Connect with Me")
 
 st.markdown("""
-<a href="https://github.com/Akanksha549" target="_blank">
+<a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" style="text-decoration:none;">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
 width="22">
 &nbsp; GitHub
 </a>
 """, unsafe_allow_html=True)
+
+st.write("")
+
+st.markdown("""
+<a href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME" target="_blank" style="text-decoration:none;">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+width="22">
+&nbsp; LinkedIn
+</a>
+""", unsafe_allow_html=True)
+  
 
 st.markdown("<br>", unsafe_allow_html=True)
 
