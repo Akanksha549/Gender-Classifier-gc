@@ -202,7 +202,7 @@ st.subheader("📊 Confidence")
 confidence = max(probability) * 100
 
 st.info(f"Model Confidence: **{confidence:.2f}%**")
-    st.write("")
+st.write("")
 
    
 
