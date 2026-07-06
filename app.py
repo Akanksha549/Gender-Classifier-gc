@@ -50,50 +50,20 @@ with st.sidebar:
 
 ✔ JPG / PNG format
 """)
-st.markdown("---")
 
-st.markdown("""
-<div style="text-align:center;">
+    st.markdown("---")
 
-<h4>❤️ Made with Love</h4>
+    st.markdown("### 🛠 Tech Stack")
 
-<b>Akanksha Mishra</b>
+    st.write("🐍 Python")
+    st.write("🎈 Streamlit")
+    st.write("🧠 Scikit-Learn")
+    st.write("🖼 Pillow")
+    st.write("📊 NumPy")
 
-</div>
-""", unsafe_allow_html=True)
+    st.markdown("---")
 
-st.write("")   # Small spacing
-
-st.markdown("### 🌐 Connect with Me")
-
-st.markdown("""
-<a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" style="text-decoration:none;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-width="22">
-&nbsp; GitHub
-</a>
-""", unsafe_allow_html=True)
-
-st.write("")
-
-st.markdown("""
-<a href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME" target="_blank" style="text-decoration:none;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-width="22">
-&nbsp; LinkedIn
-</a>
-""", unsafe_allow_html=True)
-  
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-st.markdown("""
-<a href="https://www.linkedin.com/in/akanksha-mishra" target="_blank">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-width="22">
-&nbsp; LinkedIn
-</a>
-""", unsafe_allow_html=True)
+    st.success("Made with ❤️ by Akanksha Mishra")
 
 # =====================================
 # Theme Colors
