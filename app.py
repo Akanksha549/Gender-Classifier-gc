@@ -26,8 +26,6 @@ st.set_page_config(
 # =====================================
 # Sidebar
 # =====================================
-
-
 with st.sidebar:
 
     st.image(
@@ -44,10 +42,13 @@ with st.sidebar:
     st.markdown("### 💡 AI Tips")
 
     st.info("""
-✔ Use a clear face image  
-✔ Front-facing face  
-✔ Good lighting  
-✔ JPG / PNG format  
+✔ Use a clear face image
+
+✔ Front-facing face
+
+✔ Good lighting
+
+✔ JPG / PNG format
 """)
 
     st.markdown("---")
@@ -63,6 +64,28 @@ with st.sidebar:
     st.markdown("---")
 
     st.success("Made with ❤️ by Akanksha Mishra")
+
+st.markdown("---")
+
+st.markdown("### 🌐 Connect with Me")
+
+st.markdown("""
+<a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+width="22">
+&nbsp; GitHub
+</a>
+""", unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+st.markdown("""
+<a href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME" target="_blank">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+width="22">
+&nbsp; LinkedIn
+</a>
+""", unsafe_allow_html=True)
     
 # =====================================
 # Theme Colors
@@ -129,25 +152,28 @@ IMG_SIZE = 64
 # =====================================
 # Header
 # =====================================
-st.markdown("""
+st.markdown(f"""
 <div style="
 background: linear-gradient(90deg,#2563EB,#1D4ED8);
-padding:15px;
-border-radius:12px;
+padding:20px;
+border-radius:15px;
 text-align:center;
 color:white;
 ">
 
-<h2>🧠 AI Gender Classification System</h2>
+<h1>🧠 AI Gender Classification System</h1>
 
-<p>
-Upload a face image and let AI predict Male or Female.
+<p style="font-size:18px;">
+Upload a face image and let AI predict whether the person is
+<b>Male</b> or <b>Female</b>.
 </p>
 
 </div>
 """, unsafe_allow_html=True)
 
-st.info("📸 Upload a clear, front-facing face image for best results.")
+st.write("")
+
+st.info("📸 Upload a clear, front-facing face image for the best prediction.")
 
 # =====================================
 # Upload Image
@@ -230,29 +256,24 @@ Confidence: {confidence:.2f}%
 # =====================================
 # Footer Info
 # =====================================
+st.markdown("---")
+
 st.markdown("""
 <div style="text-align:center;padding:15px;">
 
 <h4>🧠 AI Gender Classification System</h4>
 
 <p>
-Developed using <b>Python</b> • <b>Streamlit</b> • <b>Scikit-Learn</b> • <b>NumPy</b> • <b>Pillow</b>
+Developed with ❤️ using
+<b>Python</b> •
+<b>Streamlit</b> •
+<b>Scikit-Learn</b> •
+<b>NumPy</b> •
+<b>Pillow</b>
 </p>
 
-<div style="display:flex; justify-content:center; gap:20px; margin-top:10px;">
-
-    <a href="https://github.com/Akanksha549/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="35">
-    </a>
-
-    <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="35">
-    </a>
-
-</div>
-
-<p style="color:gray; margin-top:10px;">
-© 2026 AI Project
+<p style="color:gray;">
+© 2026 Akanksha Mishra
 </p>
 
 </div>
