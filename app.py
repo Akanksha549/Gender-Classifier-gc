@@ -102,11 +102,12 @@ IMG_SIZE = 64
 # -------------------------
 # Load Images
 # -------------------------
+# -------------------------
 for label, folder in enumerate(classes):
 
     folder_path = os.path.join(dataset_path, folder)
 
-    for file in os.listdir(content/sample_data/DATASET):
+    for file in os.listdir(folder_path):
 
         img_path = os.path.join(folder_path, file)
 
