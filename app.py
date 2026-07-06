@@ -64,23 +64,6 @@ with st.sidebar:
 
     st.success("Made with ❤️ by Akanksha Mishra")
     
-st.markdown("### 🌐 Connect with Me")
-
-st.markdown("""
-<div style="display:flex; justify-content:flex-start; gap:20px; margin-top:10px;">
-
-    <a href="https://github.com/Akanksha549/" target="_blank" style="text-decoration:none;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-        width="35" style="vertical-align:middle;">
-    </a>
-
-    <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank" style="text-decoration:none;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-        width="35" style="vertical-align:middle;">
-    </a>
-
-</div>
-""", unsafe_allow_html=True)
 # =====================================
 # Theme Colors
 # =====================================
