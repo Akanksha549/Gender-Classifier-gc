@@ -26,7 +26,7 @@ st.set_page_config(
 # =====================================
 # Sidebar
 # =====================================
-st.set_option('client.showErrorDetails', False)
+
 
 with st.sidebar:
 
