@@ -13,114 +13,153 @@ from PIL import Image
 import joblib
 import time
 
-# ==============================
+# =====================================
 # Page Configuration
-# ==============================
+# =====================================
 st.set_page_config(
-    page_title="Male vs Female Classifier",
-    page_icon="👨‍💻",
-    layout="wide"
+    page_title="AI Gender Classifier",
+    page_icon="🧠",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# ==============================
+# =====================================
 # Sidebar
-# ==============================
+# =====================================
 with st.sidebar:
-    st.title("📋 Project Information")
+
+    st.image(
+        "https://img.icons8.com/color/480/artificial-intelligence.png",
+        width=110
+    )
+
+    st.title("🧠 AI Gender Classifier")
 
     dark_mode = st.toggle("🌙 Dark Mode")
 
     st.markdown("---")
 
-    st.success("🤖 Model")
-    st.write("Logistic Regression")
+    st.markdown("### 💡 AI Tips")
 
-    st.markdown("### 📂 Classes")
-    st.write("👩 Female")
-    st.write("👨 Male")
+    st.info("""
+✔ Use a clear face image
 
-    st.markdown("---")
+✔ Front-facing face
 
-    st.markdown("### 📸 Image Requirements")
-    st.write("✔ JPG / JPEG / PNG")
-    st.write("✔ Clear face image")
-    st.write("✔ Front-facing face")
-    st.write("✔ RGB image")
+✔ Good lighting
+
+✔ JPG / PNG format
+""")
 
     st.markdown("---")
 
-    st.info(
-        "Upload a face image and the model predicts whether it belongs to a Male or Female."
-    )
+    st.markdown("### 🛠 Tech Stack")
 
-# ==============================
-# Theme
-# ==============================
+    st.write("🐍 Python")
+    st.write("🎈 Streamlit")
+    st.write("🧠 Scikit-Learn")
+    st.write("🖼 Pillow")
+    st.write("📊 NumPy")
+
+    st.markdown("---")
+
+    st.success("Made with ❤️ by Akanksha Mishra")
+
+# =====================================
+# Theme Colors
+# =====================================
 if dark_mode:
-    bg = "#0E1117"
-    card = "#262730"
-    text = "white"
+    bg = "#0B1220"
+    card = "#1B2430"
+    text = "#F8FAFC"
 else:
     bg = "#F5F7FA"
-    card = "white"
-    text = "black"
+    card = "#FFFFFF"
+    text = "#111827"
 
+# =====================================
+# Custom CSS
+# =====================================
 st.markdown(f"""
 <style>
 
-.stApp{{
-background:{bg};
-color:{text};
+/* Entire App */
+.stApp {{
+    background-color: {bg};
+    color: {text};
 }}
 
-.card{{
-background:{card};
-padding:20px;
-border-radius:15px;
-box-shadow:0px 3px 10px rgba(0,0,0,0.15);
+/* Sidebar */
+section[data-testid="stSidebar"] {{
+    background-color: {card};
+    border-right: 2px solid #3B82F6;
+}}
+
+/* Sidebar Text */
+section[data-testid="stSidebar"] * {{
+    color: {text} !important;
+}}
+
+/* Main Text */
+h1,h2,h3,h4,h5,h6,p,span,label {{
+    color: {text};
 }}
 
 </style>
 """, unsafe_allow_html=True)
 
-# ==============================
+# =====================================
 # Load Model
-# ==============================
+# =====================================
 model = joblib.load("male_female_model.pkl")
 IMG_SIZE = 64
 
-# ==============================
+# =====================================
 # Header
-# ==============================
-st.markdown("""
-<h1 style='text-align:center;'>
-👨👩 Male vs Female Face Classifier
-</h1>
+# =====================================
+st.markdown(f"""
+<div style="
+background: linear-gradient(90deg,#2563EB,#1D4ED8);
+padding:20px;
+border-radius:15px;
+text-align:center;
+color:white;
+">
+
+<h1>🧠 AI Gender Classification System</h1>
+
+<p style="font-size:18px;">
+Upload a face image and let AI predict whether the person is
+<b>Male</b> or <b>Female</b>.
+</p>
+
+</div>
 """, unsafe_allow_html=True)
 
-st.caption(
-    "Artificial Intelligence based Gender Classification using Machine Learning"
-)
+st.write("")
 
-st.info("📤 Upload a clear front-facing face image to begin prediction.")
+st.info("📸 Upload a clear, front-facing face image for the best prediction.")
 
-# ==============================
+# =====================================
 # Upload Image
-# ==============================
+# =====================================
 uploaded_file = st.file_uploader(
-    "Choose Image",
+    "Choose an Image",
     type=["jpg", "jpeg", "png"]
 )
 
-# ==============================
+# =====================================
 # Prediction
-# ==============================
-if uploaded_file:
+# =====================================
+if uploaded_file is not None:
 
     image = Image.open(uploaded_file).convert("RGB")
 
     col1, col2 = st.columns([1, 1])
 
+    # -------------------------
+    # Left Column
+    # -------------------------
     with col1:
 
         st.image(
@@ -129,9 +168,15 @@ if uploaded_file:
             use_container_width=True
         )
 
+    # -------------------------
+    # Preprocess Image
+    # -------------------------
     img = image.resize((IMG_SIZE, IMG_SIZE))
     img = np.array(img).flatten()
 
+    # -------------------------
+    # Predict
+    # -------------------------
     with st.spinner("🤖 AI is analyzing the image..."):
         time.sleep(1.5)
 
@@ -141,63 +186,118 @@ if uploaded_file:
     if prediction == 0:
         result = "👩 Female"
         confidence = probability[0] * 100
+        color = "#22C55E"
     else:
         result = "👨 Male"
         confidence = probability[1] * 100
+        color = "#2563EB"
 
+    # -------------------------
+    # Right Column
+    # -------------------------
     with col2:
 
-        st.markdown("## 🎯 Prediction")
+        st.markdown(f"""
+        <div style="
+        background:{color};
+        padding:25px;
+        border-radius:15px;
+        text-align:center;
+        color:white;
+        box-shadow:0px 4px 12px rgba(0,0,0,0.25);
+        ">
 
-        st.success(result)
+        <h2>🎯 Prediction Result</h2>
 
-        st.metric(
-            "Model Confidence",
-            f"{confidence:.2f}%"
-        )
+        <h1>{result}</h1>
 
-        st.toast("Prediction Completed ✅", icon="🎉")
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+
+        st.markdown(f"""
+        <div style="
+        background:{card};
+        padding:20px;
+        border-radius:15px;
+        border-left:6px solid #2563EB;
+        box-shadow:0px 3px 8px rgba(0,0,0,0.12);
+        ">
+
+        <h3 style="color:{text};">
+        📊 Model Confidence
+        </h3>
+
+        <h1 style="color:#2563EB;">
+        {confidence:.2f}%
+        </h1>
+
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+
+        st.toast("Prediction Completed Successfully 🎉", icon="✅")
 
         report = f"""
-Male vs Female Prediction Report
+AI Gender Classification Report
 
 Prediction : {result}
 
 Confidence : {confidence:.2f}%
+
+Generated using Logistic Regression
 """
 
         st.download_button(
-            "📥 Download Prediction Report",
+            "📄 Download Prediction Report",
             report,
-            file_name="Prediction_Report.txt"
+            file_name="Prediction_Report.txt",
+            use_container_width=True
         )
 
-# ==============================
-# About
-# ==============================
-with st.expander("ℹ️ How does it work?"):
+# =====================================
+# How it Works
+# =====================================
+st.write("")
+st.markdown("---")
 
-    st.write("""
-### Workflow
+with st.expander("ℹ️ How does this project work?"):
+
+    st.markdown("""
+### 🔍 Workflow
 
 1. Upload a face image.
-
-2. The image is converted into RGB format.
-
+2. The image is converted to RGB.
 3. It is resized to **64 × 64** pixels.
-
 4. Pixel values are converted into numerical features.
-
-5. Logistic Regression predicts the gender.
-
+5. The Logistic Regression model predicts the gender.
 6. The prediction and confidence score are displayed.
 """)
 
-# ==============================
+# =====================================
 # Footer
-# ==============================
+# =====================================
 st.markdown("---")
 
-st.caption(
-    "❤️ Developed using Python • Streamlit • NumPy • Pillow • Scikit-learn"
-)
+st.markdown("""
+<div style="text-align:center;padding:15px;">
+
+<h4>🧠 AI Gender Classification System</h4>
+
+<p>
+Developed with ❤️ using
+<b>Python</b> •
+<b>Streamlit</b> •
+<b>Scikit-Learn</b> •
+<b>NumPy</b> •
+<b>Pillow</b>
+</p>
+
+<p style="color:gray;">
+© 2026 Akanksha Mishra
+</p>
+
+</div>
+""", unsafe_allow_html=True)
