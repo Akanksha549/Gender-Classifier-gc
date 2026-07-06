@@ -50,23 +50,21 @@ with st.sidebar:
 
 ✔ JPG / PNG format
 """)
+st.markdown("---")
 
-    st.markdown("---")
+st.markdown("### 🛠 Tech Stack")
 
-    st.markdown("### 🛠 Tech Stack")
+st.write("🐍 Python")
+st.write("🎈 Streamlit")
+st.write("🧠 Scikit-Learn")
+st.write("🖼 Pillow")
+st.write("📊 NumPy")
 
-    st.write("🐍 Python")
-    st.write("🎈 Streamlit")
-    st.write("🧠 Scikit-Learn")
-    st.write("🖼 Pillow")
-    st.write("📊 NumPy")
+st.markdown("---")
 
-    st.markdown("---")
+st.success("Made with ❤️ by Akanksha Mishra")
 
-
-    st.success("Made with ❤️ by Akanksha Mishra")
-
-     st.markdown("---")
+st.markdown("---")
 
 st.markdown("### 🌐 Connect with Me")
 
@@ -93,7 +91,6 @@ with col2:
         """,
         unsafe_allow_html=True,
     )
-
 
 # =====================================
 # Theme Colors
