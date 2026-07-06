@@ -204,14 +204,15 @@ if uploaded_file is not None:
     # -------------------------
     # Result Logic
     # -------------------------
-    if prediction == 0:
-        result = "👩 Female"
-        confidence = probability[0] * 100
-        color = "#E1306C"
-    else:
-        result = "👨 Male"
-        confidence = probability[1] * 100
-        color = "#833AB4"
+    female_conf = probability[0] * 100
+male_conf = probability[1] * 100
+
+if prediction == 0:
+    result = "👩 Female"
+    color = "#E1306C"
+else:
+    result = "👨 Male"
+    color = "#833AB4"
 
     # -------------------------
     # Right Side UI
@@ -239,20 +240,26 @@ if uploaded_file is not None:
 
         st.markdown(f"""
         <div style="
-        background:{card};
-        padding:20px;
-        border-radius:15px;
-        border-left:6px solid #2563EB;
-        box-shadow:0px 3px 8px rgba(0,0,0,0.12);
-        ">
+background:{card};
+padding:20px;
+border-radius:15px;
+box-shadow:0px 3px 8px rgba(0,0,0,0.12);
+">
 
-        <h3 style="color:{text};">📊 Model Confidence</h3>
+<h3 style="color:{text}; text-align:center;">
+📊 Prediction Confidence
+</h3>
 
-        <h1 style="color:#2563EB;">{confidence:.2f}%</h1>
+<p style="font-size:18px; color:{text};">
+👩 <b>Female:</b> {female_conf:.2f}%
+</p>
 
-        </div>
-        """, unsafe_allow_html=True)
+<p style="font-size:18px; color:{text};">
+👨 <b>Male:</b> {male_conf:.2f}%
+</p>
 
+</div>
+""", unsafe_allow_html=True)
         st.toast("Prediction Completed 🎉", icon="✅")
 
         # -------------------------
