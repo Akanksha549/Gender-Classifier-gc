@@ -197,20 +197,11 @@ if uploaded_file is not None:
         st.toast("Prediction Completed Successfully ✅", icon="🎉")
 
         st.write("")
+st.subheader("📊 Confidence")
 
-        st.subheader("📊 Prediction Confidence")
+confidence = max(probability) * 100
 
-        st.write(f"👩 Female : {female:.2f}%")
-        st.progress(float(female)/100)
-
-        st.write(f"👨 Male : {male:.2f}%")
-        st.progress(float(male)/100)
-
-        st.metric(
-            label="Highest Confidence",
-            value=f"{max(female,male):.2f}%"
-        )
-
+st.info(f"Model Confidence: **{confidence:.2f}%**")
     st.write("")
 
    
