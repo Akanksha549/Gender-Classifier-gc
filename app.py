@@ -81,7 +81,7 @@ if uploaded_file is not None:
     st.write(f"👨 Male Probability: **{probability[1] * 100:.2f}%**")
 
 import os
-import cv2
+import opencv-python
 import joblib
 import numpy as np
 from sklearn.linear_model import LogisticRegression
