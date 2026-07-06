@@ -230,21 +230,30 @@ Confidence: {confidence:.2f}%
 # =====================================
 # Footer Info
 # =====================================
-st.markdown("---")
-
-with st.expander("ℹ️ How it works"):
-    st.write("""
-1. Upload image  
-2. Resize to 64x64  
-3. Convert to pixels  
-4. Model predicts gender  
-5. Output shown with confidence  
-""")
-
-st.markdown("---")
-
 st.markdown("""
-<div style="text-align:center;">
-<h4>Made with ❤️ by Akanksha Mishra</h4>
+<div style="text-align:center;padding:15px;">
+
+<h4>🧠 AI Gender Classification System</h4>
+
+<p>
+Developed using <b>Python</b> • <b>Streamlit</b> • <b>Scikit-Learn</b> • <b>NumPy</b> • <b>Pillow</b>
+</p>
+
+<div style="display:flex; justify-content:center; gap:20px; margin-top:10px;">
+
+    <a href="https://github.com/Akanksha549/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="35">
+    </a>
+
+    <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="35">
+    </a>
+
+</div>
+
+<p style="color:gray; margin-top:10px;">
+© 2026 AI Project
+</p>
+
 </div>
 """, unsafe_allow_html=True)
