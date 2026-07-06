@@ -50,7 +50,6 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ✅ TECH STACK (INSIDE SIDEBAR)
     st.markdown("### 🛠 Tech Stack")
 
     st.write("🐍 Python")
@@ -67,29 +66,20 @@ with st.sidebar:
 
     st.markdown("### 🌐 Connect with Me")
 
-    col1, col2 = st.columns(2)
+    # ✅ FIX: NO columns inside sidebar
+    st.markdown("""
+    <div style="display:flex; gap:15px; align-items:center;">
 
-    with col1:
-        st.markdown(
-            """
-            <a href="https://github.com/Akanksha549/" target="_blank">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                width="35">
-            </a>
-            """,
-            unsafe_allow_html=True,
-        )
+        <a href="https://github.com/Akanksha549/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="35">
+        </a>
 
-    with col2:
-        st.markdown(
-            """
-            <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-                width="35">
-            </a>
-            """,
-            unsafe_allow_html=True,
-        )
+        <a href="https://www.linkedin.com/in/akanksha-mishra-7894912bb" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="35">
+        </a>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 # =====================================
 # Theme Colors
