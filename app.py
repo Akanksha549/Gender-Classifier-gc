@@ -183,13 +183,7 @@ uploaded_file = st.file_uploader(
     type=["jpg", "jpeg", "png"]
 )
 
-# =====================================
-# Prediction
-# =====================================
-    # -------------------------
-    # Right Column
-    # -------------------------
-    with col2:
+ with col2:
 
         st.markdown(f"""
         <div style="
@@ -269,8 +263,7 @@ with st.expander("ℹ️ How does this project work?"):
 5. The Logistic Regression model predicts the gender.
 6. The prediction and confidence score are displayed.
 """)
-
-
+    
 # =====================================
 # How it Works
 # =====================================
@@ -289,7 +282,7 @@ with st.expander("ℹ️ How does this project work?"):
 5. The Logistic Regression model predicts the gender.
 6. The prediction and confidence score are displayed.
 """)
-
+    
 # =====================================
 # Footer Info
 # =====================================
