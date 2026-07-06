@@ -61,6 +61,21 @@ with st.sidebar:
 
     st.success("Made with ❤️ by Akanksha Mishra")
 
+    st.markdown("---")
+    st.markdown("### 🌐 Connect with Me")
+
+    st.link_button(
+        "🐙 GitHub",
+        "https://github.com/Akanksha549/",
+        use_container_width=True
+    )
+
+    st.link_button(
+        "💼 LinkedIn",
+        "https://www.linkedin.com/in/akanksha-mishra-7894912bb",
+        use_container_width=True
+    )
+
 # =====================================
 # Theme Colors
 # =====================================
