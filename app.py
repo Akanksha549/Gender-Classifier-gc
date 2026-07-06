@@ -186,33 +186,11 @@ uploaded_file = st.file_uploader(
 # =====================================
 # Prediction
 # =====================================
-if uploaded_file is not None:
-
-    image = Image.open(uploaded_file).convert("RGB")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.image(image, caption="Uploaded Image", use_container_width=True)
-
-    img = image.resize((IMG_SIZE, IMG_SIZE))
-    img = np.array(img).flatten()
-
-    with st.spinner("🤖 AI is analyzing..."):
-        time.sleep(1.5)
-        prediction = model.predict([img])[0]
-        probability = model.predict_proba([img])[0]
-
-    if prediction == 0:
-        result = "👩 Female"
-        confidence = probability[0] * 100
-        color = "#22C55E"
-    else:
-        result = "👨 Male"
-        confidence = probability[1] * 100
-        color = "#2563EB"
-
+    # -------------------------
+    # Right Column
+    # -------------------------
     with col2:
+
         st.markdown(f"""
         <div style="
         background:{color};
@@ -220,11 +198,17 @@ if uploaded_file is not None:
         border-radius:15px;
         text-align:center;
         color:white;
+        box-shadow:0px 4px 12px rgba(0,0,0,0.25);
         ">
-        <h2>🎯 Prediction</h2>
+
+        <h2>🎯 Prediction Result</h2>
+
         <h1>{result}</h1>
+
         </div>
         """, unsafe_allow_html=True)
+
+        st.write("")
 
         st.markdown(f"""
         <div style="
@@ -232,26 +216,59 @@ if uploaded_file is not None:
         padding:20px;
         border-radius:15px;
         border-left:6px solid #2563EB;
+        box-shadow:0px 3px 8px rgba(0,0,0,0.12);
         ">
-        <h3>📊 Confidence</h3>
-        <h1 style="color:#2563EB;">{confidence:.2f}%</h1>
+
+        <h3 style="color:{text};">
+        📊 Model Confidence
+        </h3>
+
+        <h1 style="color:#2563EB;">
+        {confidence:.2f}%
+        </h1>
+
         </div>
         """, unsafe_allow_html=True)
 
-        st.toast("Prediction Completed 🎉", icon="✅")
+        st.write("")
+
+        st.toast("Prediction Completed Successfully 🎉", icon="✅")
 
         report = f"""
-Prediction Report
+AI Gender Classification Report
 
-Result: {result}
-Confidence: {confidence:.2f}%
+Prediction : {result}
+
+Confidence : {confidence:.2f}%
+
+Generated using Logistic Regression
 """
 
         st.download_button(
-            "📄 Download Report",
+            "📄 Download Prediction Report",
             report,
-            file_name="report.txt"
+            file_name="Prediction_Report.txt",
+            use_container_width=True
         )
+
+# =====================================
+# How it Works
+# =====================================
+st.write("")
+st.markdown("---")
+
+with st.expander("ℹ️ How does this project work?"):
+
+    st.markdown("""
+### 🔍 Workflow
+
+1. Upload a face image.
+2. The image is converted to RGB.
+3. It is resized to **64 × 64** pixels.
+4. Pixel values are converted into numerical features.
+5. The Logistic Regression model predicts the gender.
+6. The prediction and confidence score are displayed.
+""")
 
 # =====================================
 # Footer Info
