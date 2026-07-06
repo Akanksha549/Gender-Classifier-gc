@@ -50,6 +50,45 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# -------------------------
+# Theme Toggle
+# -------------------------
+theme = st.sidebar.toggle("🌙 Dark Mode", value=False)
+
+if theme:
+    bg_color = "#0E1117"
+    card_color = "#1E1E1E"
+    text_color = "white"
+else:
+    bg_color = "#F4F6F9"
+    card_color = "white"
+    text_color = "black"
+
+st.markdown(f"""
+<style>
+
+.stApp {{
+    background-color:{bg_color};
+    color:{text_color};
+}}
+
+section[data-testid="stSidebar"] {{
+    background-color:{card_color};
+}}
+
+div[data-testid="stFileUploader"] {{
+    background-color:{card_color};
+    border-radius:15px;
+    padding:10px;
+}}
+
+div.stButton>button {{
+    border-radius:10px;
+}}
+
+</style>
+""", unsafe_allow_html=True)
+
 # =====================================
 # Load Model
 # =====================================
@@ -174,23 +213,7 @@ if uploaded_file is not None:
 
     st.write("")
 
-    # ===============================
-    # Graph
-    # ===============================
-    st.subheader("📈 Confidence Graph")
-
-    fig, ax = plt.subplots(figsize=(6,4))
-
-    ax.bar(
-        ["Female","Male"],
-        [female,male]
-    )
-
-    ax.set_ylim(0,100)
-    ax.set_ylabel("Confidence (%)")
-    ax.set_title("Prediction Confidence")
-
-    st.pyplot(fig)
+   
 
     # ===============================
     # Download Report
