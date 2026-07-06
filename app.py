@@ -205,11 +205,10 @@ st.info(f"Model Confidence: **{confidence:.2f}%**")
 st.write("")
 
    
-
-    # ===============================
-    # Download Report
-    # ===============================
-    report = f"""
+ # ===============================
+ # Download Report
+ # ===============================
+ report = f"""
 Male vs Female Prediction Report
 
 Prediction:
