@@ -226,26 +226,28 @@ if uploaded_file is not None:
         st.write("")
 
         st.markdown(f"""
-        <div style="
-        background:{card};
-        padding:20px;
-        border-radius:15px;
-        border-left:6px solid #E1306C;
-        box-shadow:0px 3px 8px rgba(0,0,0,0.12);
-        ">
-            <h3 style="color:{text}; text-align:center;">
-                📊 Prediction Confidence
-            </h3>
+<div style="
+background:{card};
+padding:20px;
+border-radius:15px;
+border-left:6px solid #E1306C;
+box-shadow:0px 3px 8px rgba(0,0,0,0.12);
+">
 
-            <p style="font-size:18px; color:{text};">
-                👩 <b>Female:</b> {female_conf:.2f}%
-            </p>
+<h3 style="color:{text}; text-align:center; margin-bottom:15px;">
+📊 Prediction Confidence
+</h3>
 
-            <p style="font-size:18px; color:{text};">
-                👨 <b>Male:</b> {male_conf:.2f}%
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+<div style="font-size:18px; color:{text}; margin-bottom:10px;">
+👩 <b>Female:</b> {female_conf:.2f}%
+</div>
+
+<div style="font-size:18px; color:{text};">
+👨 <b>Male:</b> {male_conf:.2f}%
+</div>
+
+</div>
+""", unsafe_allow_html=True)
 
         st.toast("Prediction Completed 🎉", icon="✅")
 
