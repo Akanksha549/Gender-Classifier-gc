@@ -205,14 +205,14 @@ if uploaded_file is not None:
     # Result Logic
     # -------------------------
     female_conf = probability[0] * 100
-male_conf = probability[1] * 100
+    male_conf = probability[1] * 100
 
-if prediction == 0:
-    result = "👩 Female"
-    color = "#E1306C"
-else:
-    result = "👨 Male"
-    color = "#833AB4"
+    if prediction == 0:
+        result = "👩 Female"
+        color = "#E1306C"
+    else:
+        result = "👨 Male"
+        color = "#833AB4"
 
     # -------------------------
     # Right Side UI
