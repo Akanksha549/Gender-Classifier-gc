@@ -65,13 +65,13 @@ with st.sidebar:
 # Theme Colors
 # =====================================
 if dark_mode:
-    bg = "#0B1220"
-    card = "#1B2430"
-    text = "#F8FAFC"
+    bg = "#0F0F0F"
+    card = "#1A1A1A"
+    text = "#FAFAFA"
 else:
-    bg = "#F5F7FA"
+    bg = "#FAFAFA"
     card = "#FFFFFF"
-    text = "#111827"
+    text = "#262626"
 
 # =====================================
 # Custom CSS
@@ -103,7 +103,7 @@ h1,h2,h3,h4,h5,h6,p,span,label {{
 /* File Uploader */
 div[data-testid="stFileUploader"] {{
     background-color:{"#1E293B" if dark_mode else "#FFFFFF"};
-    border:2px dashed #60A5FA;
+    border:2px dashed #E1306C;
     border-radius:15px;
     padding:15px;
 }}
@@ -113,7 +113,12 @@ div[data-testid="stFileUploader"] * {{
 }}
 
 div[data-testid="stFileUploader"] button {{
-    background:#2563EB !important;
+    background:linear-gradient(
+135deg,
+#833AB4,
+#FD1D1D,
+#F77737
+) !important;
     color:white !important;
     border-radius:8px;
 }}
@@ -132,7 +137,13 @@ IMG_SIZE = 64
 # =====================================
 st.markdown(f"""
 <div style="
-background: linear-gradient(90deg,#2563EB,#1D4ED8);
+background: linear-gradient(
+    135deg,
+    #833AB4,
+    #FD1D1D,
+    #F77737,
+    #FCAF45
+);
 padding:18px;
 border-radius:15px;
 text-align:center;
@@ -196,11 +207,11 @@ if uploaded_file is not None:
     if prediction == 0:
         result = "👩 Female"
         confidence = probability[0] * 100
-        color = "#22C55E"
+        color = "#E1306C"
     else:
         result = "👨 Male"
         confidence = probability[1] * 100
-        color = "#2563EB"
+        color = "#833AB4"
 
     # -------------------------
     # Right Side UI
